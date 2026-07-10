@@ -21,8 +21,8 @@ pip install andi-ai
 
 ## ⚙️ Prerequisites
 To use ANDI, you will need:
-1. A valid MongoDB Connection String URL.
-2. An OpenAI API Key (with access to the gpt-4o-mini model).
+1. A valid MongoDB Connection String URL. (check TestProject)
+2. An OpenAI API Key (with access to the gpt-4o-mini model). Configure in .env (check TestProject)
 
 ## 🚀 Quick Start
 Here is a basic example of how to initialize ANDI and run a natural language query against your database.

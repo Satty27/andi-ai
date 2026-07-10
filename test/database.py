@@ -6,7 +6,7 @@ class Connection:
     @classmethod
     def get_connection(cls):
         try:
-            db_url = "mongodb://localhost:27017/"
+            db_url = "database_url"
             return db_url
 
         except errors.PyMongoError as e:
