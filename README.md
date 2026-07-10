@@ -17,7 +17,7 @@ Instead of writing rigid CRUD endpoints, consolidate your data fetching into a s
 ## 📦 Installation
 Available on PyPI. Install ANDI using pip: 
 
-pip install andi
+pip install andi-ai
 
 ## ⚙️ Prerequisites
 To use ANDI, you will need:
