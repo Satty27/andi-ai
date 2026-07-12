@@ -31,24 +31,21 @@ Refers test directory
 `class TestProject:
 
     def testing_nlp(self):
-        url = Connection.get_connection()
-        print(url)
-        status = Andi.initialize_connection(self, url=url, database_name="aristotle")
+        self.db = db_session
+        self.analyzed_schemas = analyzed_schemas
+
+        connection_string = Connection.get_connection()
+        print(connection_string)
+
+        andi_instance = Andi(db_session=db_session, analyzed_schemas=analyzed_schemas)
+        database_name = "aristotle"
+
+        status = andi_instance.initialize_connection(connection_string=connection_string, database_name=database_name)
+
         print(status)
 
-        user_coll = Andi.analyze_schemas(self,base_collections=["users", "wallets", "weekly_leaderboard"])
+        user_coll = andi_instance.analyze_schemas(base_collections=["users", "wallets", "weekly_leaderboard"])
         print(user_coll)
-
-        # Example 1
-        # Please stick with database terminalogy. Strictly use field name as per schema and collection name to avoid LLM hallucination.
-        # As databases are case sensistive treat NLP tool the same. Explicitly ask Regex operation.
-        #
-        # Basic rules to use runtime_inputs
-        # "email":"${email}"
-        # Left side of assignment operator must be a field name matching with schema field name
-        # Right side of assignment operator "${email}" must match variable_name
-        # Always provide datatype otherwise range operators like "$in" will not work if query uses one. 
-
         email = "test_user_8_fischertimothy@gmail.com"
 
         intent = {
@@ -63,45 +60,15 @@ Refers test directory
             "projection":["name", "preferred_language"]
           }
         }
-        output = Andi.run_nlp_query(self, intent, query_identifier=None, retry=False, email=email)
-        print(output)
-
-        # Example 2
-        # 
-        intent = {
-          "intent": {
-            "goal": """
-            Write an aggregate where option_selected is equal to correct_answer and create leaderboard for top 10 emails based on timesaved.
-            Also perform a lookup to get the name where email matches in engagement collection from users collection""",
-            "runtime_inputs":[
-            ],
-            "projection":["name", "email", "rank", "timesaved"]
-          }
-        }
-        output = Andi.run_nlp_query(self, intent, query_identifier=None, retry=False)
-        print(output)
-
-        # Example 3: Query Debugging and execution
-
-        email = "test_user_8_fischertimothy@gmail.com"
-
-        intent = {
-          "intent": {
-            "goal": "Find preferred_language of user where email=email",
-            "runtime_inputs":[
-                {
-                    "email":"${email}",
-                    "datatype": "string"
-                }
-            ],
-            "projection":["name", "preferred_language"]
-          }
-        }
-        query = Andi.build_nlp_query(self, intent, query_identifier=None, retry=False)
+        query = andi_instance.build_nlp_query(intent, query_identifier=None, retry=False)
         print(query)
 
-        query_output = Andi.run_query_executor(self, query, email=email)
+        query_output = andi_instance.run_query_executor(query, email=email)
         print(query_output)
+
+if __name__ == "__main__":
+    test_project = TestProject()
+    test_project.testing_nlp(db_session=None, analyzed_schemas=[])
 `
 
 ## 🏗️ How It Works
