@@ -5,16 +5,15 @@ from .query_executor import ExecuteQuery
 
 
 class Andi:
-    def __init__(self, api_key: str, db_session, analyzed_schemas: list):
-        self.api_key = api_key
+    def __init__(self, db_session:str, analyzed_schemas: list):
         self.db = db_session
         self.analyzed_schemas = analyzed_schemas
 
 
 
-    def initialize_connection(self,url, database_name):
+    def initialize_connection(self,connection_string: str, database_name:str):
         try:
-            db = Connection.initialize_database(url, database_name)
+            db = Connection.initialize_database(connection_string, database_name)
             #if not db.result:
             self.db = db
             print("initialized connection")

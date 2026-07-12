@@ -1,15 +1,23 @@
 from andi import Andi
 from database import Connection
-
+import os
 
 class TestProject:
-    def testing_nlp(self):
-        url = Connection.get_connection()
-        print(url)
-        status = Andi.initialize_connection(self, url=url, database_name="aristotle")
+    def testing_nlp(self, db_session, analyzed_schemas):
+        self.db = db_session
+        self.analyzed_schemas = analyzed_schemas
+
+        connection_string = Connection.get_connection()
+        print(connection_string)
+
+        andi_instance = Andi(db_session=db_session, analyzed_schemas=analyzed_schemas)
+        database_name = "aristotle"
+
+        status = andi_instance.initialize_connection(connection_string=connection_string, database_name=database_name)
+
         print(status)
 
-        user_coll = Andi.analyze_schemas(self,base_collections=["users", "wallets", "weekly_leaderboard"])
+        user_coll = andi_instance.analyze_schemas(base_collections=["users", "wallets", "weekly_leaderboard"])
         print(user_coll)
 
         # #Example 1
@@ -63,11 +71,14 @@ class TestProject:
             "projection":["name", "preferred_language"]
           }
         }
-        query = Andi.build_nlp_query(self, intent, query_identifier=None, retry=False)
+        query = andi_instance.build_nlp_query(intent, query_identifier=None, retry=False)
         print(query)
 
-        query_output = Andi.run_query_executor(self, query, email=email)
+        query_output = andi_instance.run_query_executor(query, email=email)
         print(query_output)
 
-test_project = TestProject()
-test_project.testing_nlp()
+
+
+if __name__ == "__main__":
+    test_project = TestProject()
+    test_project.testing_nlp(db_session=None, analyzed_schemas=[])
