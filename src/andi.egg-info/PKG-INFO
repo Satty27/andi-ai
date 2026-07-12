@@ -1,7 +1,0 @@
-Metadata-Version: 2.4
-Name: andi
-Version: 0.1.0
-Requires-Dist: pymongo>=4.16.0
-Requires-Dist: certifi>=2024.0.0
-Requires-Dist: python-dotenv>=1.0.0
-Requires-Dist: pydantic
