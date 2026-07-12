@@ -1,5 +1,5 @@
-# **ANDI**: Advanced Natural Language Database Interface 🤖🍃
-
+# **ANDI**: Advanced Natural Language Database Interface 🤖🍃 
+## Build exclusively for MongoDB development
 ANDI (Advanced Natural Language Database Interface) is an agentic Python library that transforms your MongoDB database into a natural language interface. By leveraging the reasoning capabilities of gpt-4o-mini, ANDI allows you to generate and execute complex MongoDB queries—including dynamic runtime variables—using plain English.
 
 Instead of writing rigid CRUD endpoints, consolidate your data fetching into a single, intelligent NLP endpoint.
