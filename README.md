@@ -1,4 +1,3 @@
-Markdown
 # ANDI: Advanced Natural Language Database Interface 🤖🍃
 
 [![PyPI version](https://img.shields.io/pypi/v/andi-ai.svg)](https://pypi.org/project/andi-ai/)
