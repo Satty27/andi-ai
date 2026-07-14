@@ -79,7 +79,7 @@ intent = {
 # 5. Build the optimized NLP query execution plan
 query_plan = andi.build_nlp_query(intent, query_identifier=None)
 print(query_plan)
-# 6. Execute safely against your database
+# 6. Execute safely against your database. Make sure passing argument name and variable name must match to resolve during runtime.
 result = andi.run_query_executor(query_plan, target_email=target_email)
 
 print(result)
