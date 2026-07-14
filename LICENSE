@@ -1,4 +1,4 @@
-MIT License
+MIT License (Modified)
 
 Copyright (c) 2026 NeuralCodeAI
 
@@ -13,21 +13,14 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-2. Anti-Reverse Engineering and Decryption Restriction
+2. Anti-Reverse Engineering and Decompilation Restriction
 Notwithstanding the aforementioned permissions, certain core components of this
-Software ("Agentic Code") are distributed in an encrypted, obfuscated, or compiled
-state using PyArmor or similar protection mechanisms. You are expressly prohibited
-from decompiling, decrypting, reverse engineering, bypassing, or otherwise attempting
-to extract or derive the plain-text source code from these protected files. Any attempt
-to bypass the PyArmor encryption immediately terminates your rights under this license.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Software ("Agentic Code", specifically the compiled agent.py code) are distributed
+in a compiled executable state using Cython or similar compilation mechanisms. You
+are expressly prohibited from decompiling, reverse engineering, bypassing, or
+otherwise attempting to extract or derive the plain-text source code from these
+compiled executables. Any attempt to reverse engineer or decompile the Cython-compiled
+executables immediately terminates your rights under this license.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -36,4 +29,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
