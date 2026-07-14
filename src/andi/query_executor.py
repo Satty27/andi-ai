@@ -1,25 +1,64 @@
 from pymongo import errors
 import re
+from typing import Any, Dict, List, Tuple, Set, Union
+
+# 1. Compile the regex pattern globally for significant performance gains during recursion
+_PLACEHOLDER_PATTERN = re.compile(r'\${(.*?)}')
 
 
-def resolve_placeholders(target, **kwargs):
+def resolve_placeholders(target: Any, strict: bool = False, **kwargs: Any) -> Any:
     """
-    Recursively scans a dictionary or list, replacing placeholders like ${key}
-    with actual values from kwargs.
+    Recursively scans data structures and replaces ${key} placeholders with kwargs.
+
+    Args:
+        target: The data structure (str, dict, list, tuple, set) to process.
+        strict: If True, raises a KeyError when a placeholder is missing from kwargs.
+                If False, leaves the unresolved placeholder intact.
+        **kwargs: The variables to substitute into the placeholders.
+
+    Returns:
+        A new data structure with resolved placeholders.
     """
+    # Base Case 1: Strings (Where the actual replacement happens)
     if isinstance(target, str):
-        match = re.search(r'\${(.*?)}', target)
-        if match:
-            var_name = match.group(1)
+        # Scenario A: Exact match (e.g. target == "${user_id}").
+        # We do this to preserve native data types like int, bool, or dict from kwargs.
+        exact_match = _PLACEHOLDER_PATTERN.fullmatch(target)
+        if exact_match:
+            var_name = exact_match.group(1)
+            if strict and var_name not in kwargs:
+                raise KeyError(f"Missing placeholder variable: '{var_name}'")
             return kwargs.get(var_name, target)
-        return target
 
+        # Scenario B: Inline match (e.g. target == "Hello ${name}!").
+        # Everything becomes a string here.
+        def replace_match(match: re.Match) -> str:
+            var_name = match.group(1)
+            if strict and var_name not in kwargs:
+                raise KeyError(f"Missing placeholder variable: '{var_name}'")
+            # Convert the injected value to string, or keep original placeholder if not strict
+            return str(kwargs.get(var_name, match.group(0)))
+
+        return _PLACEHOLDER_PATTERN.sub(replace_match, target)
+
+    # Base Case 2: Dictionaries (Resolves both keys AND values)
     elif isinstance(target, dict):
-        return {k: resolve_placeholders(v, **kwargs) for k, v in target.items()}
+        return {
+            resolve_placeholders(k, strict, **kwargs): resolve_placeholders(v, strict, **kwargs)
+            for k, v in target.items()
+        }
 
+    # Base Case 3: Iterables (Lists, Tuples, Sets)
     elif isinstance(target, list):
-        return [resolve_placeholders(item, **kwargs) for item in target]
+        return [resolve_placeholders(item, strict, **kwargs) for item in target]
 
+    elif isinstance(target, tuple):
+        return tuple(resolve_placeholders(item, strict, **kwargs) for item in target)
+
+    elif isinstance(target, set):
+        return {resolve_placeholders(item, strict, **kwargs) for item in target}
+
+    # Base Case 4: Primitives (int, float, bool, None) - Return as-is
     return target
 
 
@@ -93,12 +132,13 @@ class ExecuteQuery:
                     print("---unresolved query args---")
                     print(query)
                     print("---resolved query args---")
-                    query = resolve_placeholders(query, **kwargs)
+                    query = resolve_placeholders(query, strict=True ,**kwargs)
                     print(query)
 
                     projection = nlp_query.get("projection")
                     coll = db_session.get_collection(collection)
                     documents = coll.find(query, projection)
+
                     return list(documents)
 
                 except errors.OperationFailure as err:

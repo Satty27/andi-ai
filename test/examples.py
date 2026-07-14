@@ -7,6 +7,7 @@ class TestProject:
         self.db = db_session
         self.analyzed_schemas = analyzed_schemas
 
+
         connection_string = Connection.get_connection()
         print(connection_string)
 
@@ -20,24 +21,24 @@ class TestProject:
         user_coll = andi_instance.analyze_schemas(base_collections=["users", "wallets", "weekly_leaderboard"])
         print(user_coll)
 
-        # #Example 1
-        #
-        # email = "test_user_8_fischertimothy@gmail.com"
-        #
-        # intent = {
-        #   "intent": {
-        #     "goal": "Find preferred_language of user where email=email",
-        #     "runtime_inputs":[
-        #         {
-        #             "email":"${email}",
-        #             "datatype": "string"
-        #         }
-        #     ],
-        #     "projection":["name", "preferred_language"]
-        #   }
-        # }
-        # output = Andi.run_nlp_query(self, intent, query_identifier=None, retry=False, email=email)
-        # print(output)
+        #Example 1
+
+        target_email = "test_user_8_fischertimothy@gmail.com"
+
+        intent = {
+          "intent": {
+            "goal": "Find preferred_language of user where email=email",
+            "runtime_inputs":[
+                {
+                    "email":"${email}",
+                    "datatype": "string"
+                }
+            ],
+            "projection":["name", "preferred_language"]
+          }
+        }
+        output = andi_instance.run_nlp_query(self, intent, query_identifier=None, retry=False, target_email=target_email)
+        print(output)
         #
         # #Example 2
         #
@@ -54,29 +55,29 @@ class TestProject:
         # output = Andi.run_nlp_query(self, intent, query_identifier=None, retry=False)
         # print(output)
 
-
-        # Example 3: Debug the query
-
-        email = "test_user_8_fischertimothy@gmail.com"
-
-        intent = {
-          "intent": {
-            "goal": "Find preferred_language of user where email=email",
-            "runtime_inputs":[
-                {
-                    "email":"${email}",
-                    "datatype": "string"
-                }
-            ],
-            "projection":["name", "preferred_language"]
-          }
-        }
-        query = andi_instance.build_nlp_query(intent, query_identifier=None, retry=False)
-        print(query)
-
-        query_output = andi_instance.run_query_executor(query, email=email)
-        print(query_output)
-
+        #
+        # # Example 3: Debug the query
+        #
+        # email = "test_user_8_fischertimothy@gmail.com"
+        #
+        # intent = {
+        #   "intent": {
+        #     "goal": "Find preferred_language of user where email=email",
+        #     "runtime_inputs":[
+        #         {
+        #             "email":"${email}",
+        #             "datatype": "string"
+        #         }
+        #     ],
+        #     "projection":["name", "preferred_language"]
+        #   }
+        # }
+        # query = andi_instance.build_nlp_query(intent, query_identifier=None, retry=False)
+        # print(query)
+        #
+        # query_output = andi_instance.run_query_executor(query, email=email)
+        # print(query_output)
+        #
 
 
 if __name__ == "__main__":

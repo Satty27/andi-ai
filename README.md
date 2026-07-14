@@ -46,12 +46,13 @@ Here is how easily you can initialize ANDI, map your schema, and execute a natur
 import os
 from andi import Andi
 
-# 1. Initialize ANDI 
-andi = Andi()
+# 1. Initialize ANDI
+andi = Andi(db_session=None, analyzed_schemas=None)
 
 # 2. Connect to your MongoDB instance
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
-DATABASE_NAME = "production_db"
+DATABASE_NAME = "database_name"
+connection_string = f"mongodb://{MONGO_URI}"
 
 andi.initialize_connection(connection_string=MONGO_URI, database_name=DATABASE_NAME)
 
@@ -60,14 +61,14 @@ andi.initialize_connection(connection_string=MONGO_URI, database_name=DATABASE_N
 andi.analyze_schemas(base_collections=["users", "wallets", "weekly_leaderboard"])
 
 # 4. Define a natural language intent with safe runtime variables
-target_email = "alex.developer@gmail.com"
+target_email = "test_user_8_fischertimothy@gmail.com"
 
 intent = {
     "intent": {
-        "goal": "Find the preferred_language and name of the user where email matches the provided email variable",
+        "goal": "Find the preferred_language and name of the user where email=target_email",
         "runtime_inputs": [
             {
-                "email": "${email}",
+                "email": "${target_email}",
                 "datatype": "string"
             }
         ],
@@ -76,13 +77,13 @@ intent = {
 }
 
 # 5. Build the optimized NLP query execution plan
-query_plan = andi.build_nlp_query(intent, query_identifier="fetch_user_language_pref")
-
+query_plan = andi.build_nlp_query(intent, query_identifier=None)
+print(query_plan)
 # 6. Execute safely against your database
-result = andi.run_query_executor(query_plan, email=target_email)
+result = andi.run_query_executor(query_plan, target_email=target_email)
 
 print(result)
-# Output: [{'name': 'Alex', 'preferred_language': 'en-US'}]
+[{'name': 'Scott Watkins', 'preferred_language': 'en'}]
 ```
 ## 🏗️ How It Works
 
