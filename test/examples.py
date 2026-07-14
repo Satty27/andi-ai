@@ -27,10 +27,10 @@ class TestProject:
 
         intent = {
           "intent": {
-            "goal": "Find preferred_language of user where email=email",
+            "goal": "Find the preferred_language and name of the user where email=target_email",
             "runtime_inputs":[
                 {
-                    "email":"${email}",
+                    "email":"${target_email}",
                     "datatype": "string"
                 }
             ],

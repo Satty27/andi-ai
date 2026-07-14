@@ -95,7 +95,7 @@ graph TD
     classDef db fill:#0d47a1,stroke:#1565c0,stroke-width:1px,color:#fff;
 
     DB[(MongoDB Instance)]:::db
-    Schema[1. Local Schema Caching<br/><i>Generates .andi_schema.json</i>]:::default
+    Schema[1. Local Schema Caching<br/><i>Generates .schema_cache.json</i>]:::default
     LLM[2. OpenAI gpt-4o-mini Agent<br/><i>Translates Intent + Metadata</i>]:::highlight
     Executor[3. Secure Query Executor<br/><i>Compiles bindings & executes locally</i>]:::default
     Result([Clean Python Dict Output]):::default
