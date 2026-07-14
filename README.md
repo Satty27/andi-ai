@@ -41,6 +41,25 @@ To run ANDI, ensure you have:
 Here is how easily you can initialize ANDI, map your schema, and execute a natural language query with dynamic runtime bindings:
 
 
+### ⚡ How Runtime Variables Work (`**kwargs` Resolution)
+
+To prevent string-concatenation vulnerabilities and prompt injection, ANDI uses a strict declarative variable binding system. When you define an intent, you declare placeholders using the `${variable_name}` syntax. 
+
+When executing the query via `run_query_executor`, you must pass these exact variables as Python keyword arguments (`**kwargs`).
+
+### The Golden Rule of Mappings
+The variable key identifier defined inside your **`runtime_inputs` object template** must match the **Python parameter key** exactly. 
+
+| Location | Key Syntax | Example |
+| :--- | :--- | :--- |
+| **1. Inside Intent JSON:** | `"runtime_inputs": [{"email": "${target_email}"}]` | Uses `${target_email}` placeholder |
+| **2. Inside `run_query_executor`:** | `andi.run_query_executor(plan, target_email=variable)` | `target_email=target_email` |
+
+---
+
+### Detailed Breakdown Example
+
+Here is exactly how the mapping connects from your JSON definition to execution:
 
 ```Python
 import os
@@ -85,6 +104,7 @@ result = andi.run_query_executor(query_plan, target_email=target_email)
 print(result)
 [{'name': 'Scott Watkins', 'preferred_language': 'en'}]
 ```
+
 ## 🏗️ How It Works
 
 ```mermaid
