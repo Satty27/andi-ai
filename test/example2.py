@@ -2,7 +2,7 @@ import os
 from andi import Andi
 
 # 1. Initialize ANDI
-andi = Andi(db_session=None, analyzed_schemas=None)
+andi = Andi(db_session="", analyzed_schemas=[])
 
 # 2. Connect to your MongoDB instance
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
