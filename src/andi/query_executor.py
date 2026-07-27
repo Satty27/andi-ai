@@ -84,11 +84,7 @@ class ExecuteQuery:
             if operation == "find":
                 try:
                     query = nlp_query.get("query")
-                    print("---unresolved query args---")
-                    print(query)
-                    print("---resolved query args---")
                     query = resolve_placeholders(query, strict=True ,**kwargs)
-                    print(query)
 
                     projection = nlp_query.get("projection")
                     coll = db_session.get_collection(collection)

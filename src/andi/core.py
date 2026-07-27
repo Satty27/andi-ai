@@ -112,7 +112,7 @@ class Andi:
         try:
             nlp_agent = NlPAgent()
             nlp_query = nlp_agent.brain_agent(self.analyzed_schemas, intent)
-            manage_query(nlp_query, query_identifier, retry)
+            #manage_query(nlp_query, query_identifier, retry)
             return nlp_query
         except Exception as e:
             print("failed to run nlp query " + str(e))
