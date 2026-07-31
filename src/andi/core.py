@@ -77,6 +77,7 @@ class Andi:
 
 
 
+
     def initialize_connection(self,connection_string: str, database_name:str):
         try:
             db = Connection.initialize_database(connection_string, database_name)

@@ -89,6 +89,7 @@ Here is exactly how the mapping connects from your JSON definition to execution:
 ```Python
 from andi import Andi
 
+
 class TestProject:
     def testing_nlp(self, db_session, analyzed_schemas):
         self.db = db_session
