@@ -88,9 +88,11 @@ class ExecuteQuery:
 
                     projection = nlp_query.get("projection")
                     coll = db_session.get_collection(collection)
-                    documents = coll.find(query, projection)
+                    documents = list(coll.find(query, projection))
 
-                    return list(documents)
+                    for document in documents:
+                        document["_id"] = str(document["_id"])
+                    return documents
 
                 except errors.OperationFailure as err:
                     ret_json = {
@@ -123,8 +125,10 @@ class ExecuteQuery:
                     pipeline = resolve_placeholders(pipeline, **kwargs)
 
                     coll = db_session.get_collection(collection)
-                    documents = coll.aggregate(pipeline)
-                    return list(documents)
+                    documents = list(coll.aggregate(pipeline))
+                    for document in documents:
+                        document["_id"] = str(document["_id"])
+                    return documents
 
                 except errors.OperationFailure as err:
                     ret_json = {

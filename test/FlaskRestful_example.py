@@ -30,17 +30,24 @@ class AnalyticsQueryEngine(Resource):
             },
           "collection_name": ["wallets"]
         }
+
+        example 3:
+        {
+          "intent": {
+            "goal": "Find the preferred_language and name of the user where email=test_user_8_fischertimothy@gmail.com",
+            "projection":["name", "preferred_language"]
+            },
+          "collection_name": ["users"],
+          "query_identifier": "fetch_user_lan"
+        }
+
+        Call function fetch_query_by_identifier(unique_identifier) to fetch existing query from cache
         """
 
         json_data = request.get_json(force=True)
-        user_prompt = json_data.get("intent")
-        collection_name = json_data.get("collection_name")
-
-        if not user_prompt:
-            return {"error": "Missing 'prompt' parameter"}, 400
-
-        if type(collection_name) is not list:
-            return {"error": "base collection accept values only in list"}, 400
+        user_prompt = json_data.get("intent", None)
+        collection_name = json_data.get("collection_name", None)
+        unique_identifier = json_data.get("query_identifier", None)
 
 
         try:
@@ -52,9 +59,11 @@ class AnalyticsQueryEngine(Resource):
             vector_agent.initialize_connection(connection_string=connection_string, database_name=database_name)
             vector_agent.analyze_schemas(base_collections=collection_name)
 
-            query = vector_agent.build_nlp_query(intent=user_prompt, query_identifier=None, retry=False)
+            query = vector_agent.build_nlp_query(intent=user_prompt, query_identifier=unique_identifier, retry=False)
+            #query = vector_agent.fetch_query_by_identifier(unique_identifier)
 
             output = vector_agent.run_query_executor(nlp_query=query)
+            print(output)
 
             return {
                 "success": True,

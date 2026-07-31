@@ -1,11 +1,11 @@
 # ANDI-AI: Secure Agentic AI Data Gateway for Enterprise MongoDB 🤖🍃
-[![PyPI version](https://img.shields.io/pypi/v/andi.svg)](https://pypi.org/project/andi-ai/0.1.11/)
+[![PyPI version](https://img.shields.io/pypi/v/andi-ai.svg)](https://pypi.org/project/andi-ai/0.1.2/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 **ANDI** stands for Advanced Natural Language Database Interface. It is the Secure Agentic AI Data Gateway for Enterprise MongoDB.
 We provide a deterministic middleware layer that enables AI agents and software applications to safely execute queries/aggregates on MongoDB clusters using plain text—without sacrificing speed, security, or predictability.
-By leveraging **Agentic workflow**, andi instantly translates plain English into precise MongoDB standard queries or complex multi-stage aggregation pipelines—complete with **dynamic runtime variables**. 
+By leveraging **Agentic workflow**, Andi instantly translates plain English into precise MongoDB standard queries or complex multi-stage aggregation pipelines—complete with **dynamic runtime variables**. 
 
 Stop building, maintaining, and debugging dozens of rigid, single-purpose CRUD endpoints. Consolidate your data fetching layer into a single, highly flexible, intelligent NLP endpoint.
 
@@ -38,9 +38,10 @@ graph TD
 
 ## ✨ Features
 
-*   🗣️ **Text-to-NoSQL Translation:** Write complex database requests in plain English. andi handles the heavy lifting, translating intent into native MongoDB query syntax.
-*   🧠 **Agentic Query Planning:** Powered by **OPENAPI**, andi deeply understands context, deeply nested structures, and relationships to construct highly accurate operations.
-*   🔒 **Privacy-First Schema Isolation:** andi connects to your database, infers the shape of your collections, and caches the structure locally. **Only the schema metadata is sent to the LLM**—your actual database records are never exposed to the agent.
+*   🗣️ **Text-to-NoSQL Translation:** Write complex database requests in plain English. Andi handles the heavy lifting, translating intent into native MongoDB query syntax.
+*   🧠 **Agentic Query Planning:** Powered by **OPENAPI**, Andi deeply understands context, deeply nested structures, and relationships to construct highly accurate operations.
+*   💾 Persistent Query Caching (**New**): Add a robust persistence layer to fetch compiled queries directly from cache, avoiding redundant query generation and significantly reducing token usage.
+*   🔒 **Privacy-First Schema Isolation:** Andi connects to your database, infers the shape of your collections, and caches the structure locally. **Only the schema metadata is sent to the LLM**—your actual database records are never exposed to the agent.
 *   ⚡ **Secure Runtime Variables:** Safely inject dynamic inputs into your natural language prompts at runtime, eliminating string-concatenation and prompt-injection vulnerabilities.
 *   🛠️ **Complex Aggregations Out-of-the-Box:** Seamlessly generates standard `find()` queries as well as advanced `aggregate()` pipelines (`$lookup`, `$unwind`, `$group`, etc.).
 *   🎯 **Single Endpoint Architecture:** Perfect for building AI agents, chatbots, or highly dynamic applications that require flexible, ad-hoc data retrieval without writing code for every new UI view.
@@ -49,7 +50,7 @@ graph TD
 
 ## 📦 Installation
 
-andi is available on PyPI. Install it cleanly using `pip`:
+Andi is available on PyPI. Install it cleanly using `pip`:
 
 ```bash
 pip install andi-ai
@@ -57,17 +58,17 @@ pip install andi-ai
 
 ## ⚙️ Prerequisites
 
-To run andi, ensure you have:
+To run Andi, ensure you have:
 1. A valid MongoDB Connection String URI.
 2. An OpenAI API Key configured in your environment variables (OPENAI_API_KEY).
 
 ## 🚀 Quick Start
-Here is how easily you can initialize andi, map your schema, and execute a natural language query with dynamic runtime bindings:
+Here is how easily you can initialize Andi, map your schema, and execute a natural language query with dynamic runtime bindings:
 
 
 ### ⚡ How Runtime Variables Work (`**kwargs` Resolution)
 
-To prevent string-concatenation vulnerabilities and prompt injection, andi uses a strict declarative variable binding system. When you define an intent, you declare placeholders using the `${variable_name}` syntax. 
+To prevent string-concatenation vulnerabilities and prompt injection, Andi uses a strict declarative variable binding system. When you define an intent, you declare placeholders using the `${variable_name}` syntax. 
 
 When executing the query via `run_query_executor`, you must pass these exact variables as Python keyword arguments (`**kwargs`).
 
@@ -142,7 +143,7 @@ graph TD
     end
 
     %% 2. Orchestration Layer
-    subgraph andi_Engine ["andi Agent Engine Core"]
+    subgraph Andi_Engine ["andi Agent Engine Core"]
         Init["VectorAgent Initialization<br>(Target Database Setup)"]:::engine
         SchemaAnalzer["vector_agent.analyze_schemas()<br>(Extracts Schemas)"]:::engine
         Builder["vector_agent.build_nlp_query()<br>(Deterministic Query Construction)"]:::engine
@@ -180,7 +181,7 @@ graph TD
 
 ## 📖 Supported Operations
 
-andi features a strict read-only routing engine. It translates natural language exclusively into data-fetching operations, ensuring your production data remains completely safe from AI hallucinations or unauthorized modifications.
+Andi features a strict read-only routing engine. It translates natural language exclusively into data-fetching operations, ensuring your production data remains completely safe from AI hallucinations or unauthorized modifications.
 
 | Operation | Status | Capabilities | Natural Language Example | Generated Native Syntax |
 | :--- | :--- | :--- | :--- | :--- |
@@ -190,7 +191,7 @@ andi features a strict read-only routing engine. It translates natural language 
 | **`update() / delete()`** | ❌ Blocked | Prevent unauthorized mutations, bulk updates, or accidental collections drops. | *"Delete all users who haven't logged in..."* | **Operation Denied** (Read-Only Guardrail) |
 
 ### 🔒 The Read-Only Safety Guarantee
-> **Security Note:** Write operations are intentionally restricted at the core library layer. Even if an LLM structure attempts to formulate a mutation pipeline, andi's execution engine will intercept and reject the command before it ever hits your MongoDB driver. This makes it completely safe for exposed API endpoints.
+> **Security Note:** Write operations are intentionally restricted at the core library layer. Even if an LLM structure attempts to formulate a mutation pipeline, Andi's execution engine will intercept and reject the command before it ever hits your MongoDB driver. This makes it completely safe for exposed API endpoints.
 
 ## 🤝 Contributing
 
