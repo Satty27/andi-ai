@@ -2,7 +2,7 @@
 
 **Report date:** 2026-08-03  
 **Package evaluated:** `andi-ai==0.1.12`  
-**Benchmark code:** [`andi_mflix_benchmark.py`](https://github.com/Satty27/andi-ai/blob/main/andi-ai/andi_mflix_benchmark.py)  
+**Benchmark code:** [`andi_mflix_benchmark.py`]
 **Machine-readable result:** [`reports/latest-report.json`](../reports/latest-report.json)
 
 ## Scope and Method
