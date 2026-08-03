@@ -1,0 +1,46 @@
+{
+    "fetch_user_lan": {
+        "operation": "find",
+        "collection": "users",
+        "query": {
+            "email": "test_user_8_fischertimothy@gmail.com"
+        },
+        "projection": {
+            "name": 1,
+            "preferred_language": 1,
+            "_id": 0
+        },
+        "sort": {},
+        "limit": null,
+        "options": {},
+        "pipeline": [],
+        "document": {},
+        "documents": [],
+        "update": {},
+        "requires_confirmation": false,
+        "reason": "",
+        "audit_trail": {
+            "user_intent": "Find the preferred_language and name of the user where email=test_user_8_fischertimothy@gmail.com.",
+            "selected_operation": "find",
+            "selected_collection": "users",
+            "detected_filters": {
+                "email": "test_user_8_fischertimothy@gmail.com"
+            },
+            "detected_sort": {},
+            "detected_limit": null,
+            "selected_projection": [
+                "name",
+                "preferred_language"
+            ],
+            "allowed_schema_fields_used": [
+                "email",
+                "name",
+                "preferred_language"
+            ],
+            "blocked_fields": [],
+            "optimization_notes": "No indexes defined on email field; query planner may perform collection scan or use other available indexes.",
+            "safety_checks": "Filter on allowed field email; projections allowed on name and preferred_language.",
+            "rejection_reason": ""
+        }
+    }
+}
