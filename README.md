@@ -40,11 +40,12 @@ graph TD
 
 *   🗣️ **Text-to-NoSQL Translation:** Write complex database requests in plain English. Andi handles the heavy lifting, translating intent into native MongoDB query syntax.
 *   🧠 **Agentic Query Planning:** Powered by **OPENAPI**, Andi deeply understands context, deeply nested structures, and relationships to construct highly accurate operations.
-*   💾 Persistent Query Caching (**New**): Add a robust persistence layer to fetch compiled queries directly from cache, avoiding redundant query generation and significantly reducing token usage.
+*   💾 **Persistent Query Caching** (**New**): Add a robust persistence layer to fetch compiled queries directly from cache, avoiding redundant query generation and significantly reducing token usage.
 *   🔒 **Privacy-First Schema Isolation:** Andi connects to your database, infers the shape of your collections, and caches the structure locally. **Only the schema metadata is sent to the LLM**—your actual database records are never exposed to the agent.
 *   ⚡ **Secure Runtime Variables:** Safely inject dynamic inputs into your natural language prompts at runtime, eliminating string-concatenation and prompt-injection vulnerabilities.
 *   🛠️ **Complex Aggregations Out-of-the-Box:** Seamlessly generates standard `find()` queries as well as advanced `aggregate()` pipelines (`$lookup`, `$unwind`, `$group`, etc.).
 *   🎯 **Single Endpoint Architecture:** Perfect for building AI agents, chatbots, or highly dynamic applications that require flexible, ad-hoc data retrieval without writing code for every new UI view.
+*   ⚙️ **LLM_INTEGRATION.md**: Cloud LLM skillset instructions to set up ANDI-AI as an isolated query orchestration layer and AI firewall in front of MongoDB database.
 
 ---
 
