@@ -15,7 +15,7 @@ class Settings:
     def from_env(cls):
 
         settings = cls(
-            openai_api_key=os.environ.get("OPENAPI_KEY"),
+            openai_api_key=os.environ.get("OPENAI_API_KEY"),
             openai_model=os.environ.get("OPENAI_MODEL"),
             openai_base_url=os.environ.get("BASE_URL"),
         )

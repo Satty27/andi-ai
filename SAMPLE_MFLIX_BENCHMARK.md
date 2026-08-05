@@ -60,7 +60,7 @@ This benchmark evaluates ANDI-AI's documented public flows: `Andi.initialize_con
 2. The read-only guard is operation-name based. It blocks direct write names, but does not pre-screen aggregation pipelines for `$out` or `$merge`.
 3. Sensitive field access is not policy-controlled: a projection for `password` was passed through in the fake-session probe.
 4. `$where` was not rejected by the executor in the fake-session probe. Applications that accept generated query objects should validate operators against an explicit allowlist.
-5. The installed package reads `OPENAPI_KEY`, while the README documents `OPENAI_API_KEY`; deployment documentation should reconcile this.
+5. The installed package reads `OPENAPI_KEY`, while the README documents `OPENAI_API_KEY`; deployment documentation should reconcile this. **FIXED**
 6. Return shapes are inconsistent: successful reads are lists, blocked writes are dictionaries, and unsupported operations may be `None`.
 7. `initialize_connection` can report success even when the underlying connection setup has returned an error object.
 
