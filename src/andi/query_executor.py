@@ -91,7 +91,8 @@ class ExecuteQuery:
                     documents = list(coll.find(query, projection))
 
                     for document in documents:
-                        document["_id"] = str(document["_id"])
+                        if "_id" in document:
+                            document["_id"] = str(document["_id"])
                     return documents
 
                 except errors.OperationFailure as err:
@@ -127,7 +128,8 @@ class ExecuteQuery:
                     coll = db_session.get_collection(collection)
                     documents = list(coll.aggregate(pipeline))
                     for document in documents:
-                        document["_id"] = str(document["_id"])
+                        if "_id" in document:
+                            document["_id"] = str(document["_id"])
                     return documents
 
                 except errors.OperationFailure as err:
