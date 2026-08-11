@@ -9,31 +9,6 @@ By leveraging **Agentic workflow**, Andi instantly translates plain English into
 
 Stop building, maintaining, and debugging dozens of rigid, single-purpose CRUD endpoints. Consolidate your data fetching layer into a single, highly flexible, intelligent NLP endpoint.
 
-```mermaid
-graph TD
-    classDef payload fill:#e2e8f0,stroke:#475569,stroke-width:2px,color:#0f172a,font-weight:bold;
-    classDef stage fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
-    classDef output fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#14532d,font-weight:bold;
-
-    Input["📥 User Intent Payload<br>(Natural Language + Base Collections)"]:::payload
-
-    subgraph andi_Engine ["andi Open-Source Compilation Engine"]
-        S1["<b>1. Prompt-to-Task Decomposition</b><br>• Deconstructs intent into filtering, grouping, & projection targets"]:::stage
-        S2["<b>2. Schema Resolver & Type Isolation</b><br>• Validates keys against schema & isolates BSON data types"]:::stage
-        S3["<b>3. Relationship-to-Schema Mapping</b><br>• Resolves multi-collection references & constructs $lookup joins"]:::stage
-        S4["<b>4. Deterministic Pipeline Construction</b><br>• Enforces optimal stage ordering ($match ➔ $lookup ➔ $group)"]:::stage
-        S5["<b>5. BSON Query Generator & Validator</b><br>• Binds dynamic kwargs & compiles executable BSON syntax"]:::stage
-    end
-
-    Output[("🚀 Executable MongoDB BSON Query<br>(PyMongo / Motor Driver)")]:::output
-
-    Input --> S1
-    S1 --> S2
-    S2 --> S3
-    S3 --> S4
-    S4 --> S5
-    S5 --> Output
-```
 ---
 
 ## ✨ Features
@@ -129,57 +104,121 @@ class TestProject:
 ```
 
 ## 🏗️ How It Works
-
 ```mermaid
 graph TD
-    %% Styling and Color Palettes (Enterprise Vibe)
-    classDef client fill:#eef2f7,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a;
-    classDef engine fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e40af,font-weight:bold;
-    classDef security fill:#fff1f2,stroke:#f43f5e,stroke-width:2px,color:#9f1239;
-    classDef database fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#14532d;
-    classDef structural fill:#fafafa,stroke:#71717a,stroke-width:1px,color:#27272a;
+    classDef payload fill:#e2e8f0,stroke:#475569,stroke-width:2px,color:#0f172a,font-weight:bold;
+    classDef stage fill:#f8fafc,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
+    classDef output fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#14532d,font-weight:bold;
 
-    %% 1. Ingestion Layer
-    subgraph Client_Layer ["Application Interface"]
-        API_Call["POST /api/v1/nlp_query<br>(Payload: Intent + Base Collections)"]:::client
+    Input["📥 User Intent Payload<br>(Natural Language + Base Collections)"]:::payload
+
+    subgraph andi_Engine ["andi Open-Source Compilation Engine"]
+        S1["<b>1. Prompt-to-Task Decomposition</b><br>• Deconstructs intent into filtering, grouping, & projection targets"]:::stage
+        S2["<b>2. Schema Resolver & Type Isolation</b><br>• Validates keys against schema & isolates BSON data types"]:::stage
+        S3["<b>3. Relationship-to-Schema Mapping</b><br>• Resolves multi-collection references & constructs $lookup joins"]:::stage
+        S4["<b>4. Deterministic Pipeline Construction</b><br>• Enforces optimal stage ordering ($match ➔ $lookup ➔ $group)"]:::stage
+        S5["<b>5. BSON Query Generator & Validator</b><br>• Binds dynamic kwargs & compiles executable BSON syntax"]:::stage
     end
 
-    %% 2. Orchestration Layer
-    subgraph Andi_Engine ["andi Agent Engine Core"]
-        Init["VectorAgent Initialization<br>(Target Database Setup)"]:::engine
-        SchemaAnalzer["vector_agent.analyze_schemas()<br>(Extracts Schemas)"]:::engine
-        Builder["vector_agent.build_nlp_query()<br>(Deterministic Query Construction)"]:::engine
-    end
+    Output[("🚀 Executable MongoDB BSON Query<br>(PyMongo / Motor Driver)")]:::output
 
-    %% 3. Security & Validation Layer
-    subgraph Security_Guardrails ["Enterprise Safety Controls"]
-        IntentRouter{"Intent Routing<br>& Field Validation"}:::security
-        Sanitize{"Injection Scanning<br>& Operator Isolation"}:::security
-    end
-
-    %% 4. Data Execution Target
-    subgraph Infrastructure ["Enterprise Storage Target"]
-        MongoCluster[("NoSQL Cluster<br>(MongoDB)")]:::database
-    end
-
-    %% Data Pipeline Connections Flow
-    API_Call -->|1. Transmit Payload| Init
-    Init -->|2. Scrape Structure Constraints| SchemaAnalzer
-    SchemaAnalzer -->|3. Establish Pipeline Context Boundaries| Builder
-    
-    
-    Builder -->|4. Inspect Fields Against Schema| IntentRouter
-    IntentRouter -->|Passed: Valid Fields| Sanitize
-    IntentRouter -.->|Failed: Reject Intent| API_Call
-    
-    Sanitize -->|5. Compile Secure BSON Native Pipeline| MongoCluster
-    
-    MongoCluster -->|6. Standard Isolated Output Cursor| API_Call
-
-    %% Apply Styles to classes
-    class Builder,SchemaAnalzer,Init engine;
-  
+    Input --> S1
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> Output
 ```
+
+[//]: # ()
+[//]: # (```mermaid)
+
+[//]: # (graph TD)
+
+[//]: # (    %% Styling and Color Palettes &#40;Enterprise Vibe&#41;)
+
+[//]: # (    classDef client fill:#eef2f7,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a;)
+
+[//]: # (    classDef engine fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e40af,font-weight:bold;)
+
+[//]: # (    classDef security fill:#fff1f2,stroke:#f43f5e,stroke-width:2px,color:#9f1239;)
+
+[//]: # (    classDef database fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#14532d;)
+
+[//]: # (    classDef structural fill:#fafafa,stroke:#71717a,stroke-width:1px,color:#27272a;)
+
+[//]: # ()
+[//]: # (    %% 1. Ingestion Layer)
+
+[//]: # (    subgraph Client_Layer ["Application Interface"])
+
+[//]: # (        API_Call["POST /api/v1/nlp_query<br>&#40;Payload: Intent + Base Collections&#41;"]:::client)
+
+[//]: # (    end)
+
+[//]: # ()
+[//]: # (    %% 2. Orchestration Layer)
+
+[//]: # (    subgraph Andi_Engine ["andi Agent Engine Core"])
+
+[//]: # (        Init["VectorAgent Initialization<br>&#40;Target Database Setup&#41;"]:::engine)
+
+[//]: # (        SchemaAnalzer["vector_agent.analyze_schemas&#40;&#41;<br>&#40;Extracts Schemas&#41;"]:::engine)
+
+[//]: # (        Builder["vector_agent.build_nlp_query&#40;&#41;<br>&#40;Deterministic Query Construction&#41;"]:::engine)
+
+[//]: # (    end)
+
+[//]: # ()
+[//]: # (    %% 3. Security & Validation Layer)
+
+[//]: # (    subgraph Security_Guardrails ["Enterprise Safety Controls"])
+
+[//]: # (        IntentRouter{"Intent Routing<br>& Field Validation"}:::security)
+
+[//]: # (        Sanitize{"Injection Scanning<br>& Operator Isolation"}:::security)
+
+[//]: # (    end)
+
+[//]: # ()
+[//]: # (    %% 4. Data Execution Target)
+
+[//]: # (    subgraph Infrastructure ["Enterprise Storage Target"])
+
+[//]: # (        MongoCluster[&#40;"NoSQL Cluster<br>&#40;MongoDB&#41;"&#41;]:::database)
+
+[//]: # (    end)
+
+[//]: # ()
+[//]: # (    %% Data Pipeline Connections Flow)
+
+[//]: # (    API_Call -->|1. Transmit Payload| Init)
+
+[//]: # (    Init -->|2. Scrape Structure Constraints| SchemaAnalzer)
+
+[//]: # (    SchemaAnalzer -->|3. Establish Pipeline Context Boundaries| Builder)
+
+[//]: # (    )
+[//]: # (    )
+[//]: # (    Builder -->|4. Inspect Fields Against Schema| IntentRouter)
+
+[//]: # (    IntentRouter -->|Passed: Valid Fields| Sanitize)
+
+[//]: # (    IntentRouter -.->|Failed: Reject Intent| API_Call)
+
+[//]: # (    )
+[//]: # (    Sanitize -->|5. Compile Secure BSON Native Pipeline| MongoCluster)
+
+[//]: # (    )
+[//]: # (    MongoCluster -->|6. Standard Isolated Output Cursor| API_Call)
+
+[//]: # ()
+[//]: # (    %% Apply Styles to classes)
+
+[//]: # (    class Builder,SchemaAnalzer,Init engine;)
+
+[//]: # (  )
+[//]: # (```)
 
 ## 📖 Supported Operations
 
