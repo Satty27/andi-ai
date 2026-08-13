@@ -81,7 +81,10 @@ class Andi:
     def initialize_connection(self,connection_string: str, database_name:str):
         try:
             db = Connection.initialize_database(connection_string, database_name)
-            #if not db.result:
+
+            if not db.result:
+                return {"result": "failed", "message": "failed to initialized connection. reason: " + db.error}
+
             self.db = db
             print("initialized connection")
             return {"result": "success", "message":"initialized connection" }

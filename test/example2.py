@@ -5,9 +5,8 @@ from andi import Andi
 andi = Andi(db_session="", analyzed_schemas=[])
 
 # 2. Connect to your MongoDB instance
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI =  "mongodb://localhost:27017"
 DATABASE_NAME = "database_name"
-connection_string = f"mongodb://{MONGO_URI}"
 
 andi.initialize_connection(connection_string=MONGO_URI, database_name=DATABASE_NAME)
 
