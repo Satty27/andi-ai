@@ -10,7 +10,7 @@ By leveraging **Agentic workflow**, Andi instantly translates plain English into
 Stop building, maintaining, and debugging dozens of rigid, single-purpose CRUD endpoints. Consolidate your data fetching layer into a single, highly flexible, intelligent NLP endpoint.
 
 [Wiki Links](https://github.com/Satty27/andi-ai/wiki)
-1. [What ANDI-AI?](https://github.com/Satty27/andi-ai/wiki)
+1. [What is ANDI-AI?](https://github.com/Satty27/andi-ai/wiki)
 2. [Initialize MongoDB Connection](https://github.com/Satty27/andi-ai/wiki/MongoDB-connection-initialisation)
 3. [Analyse Schema](https://github.com/Satty27/andi-ai/wiki/Schema-Analysis) 
 4. [Text to NoSQL Query Generation](https://github.com/Satty27/andi-ai/wiki/Text%E2%80%90To%E2%80%90NoSQL-Query-Generation)
