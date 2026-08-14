@@ -9,7 +9,19 @@ By leveraging **Agentic workflow**, Andi instantly translates plain English into
 
 Stop building, maintaining, and debugging dozens of rigid, single-purpose CRUD endpoints. Consolidate your data fetching layer into a single, highly flexible, intelligent NLP endpoint.
 
-
+[Wiki Links](https://pypi.org/project/andi-ai/0.1.14/)
+1. [What ANDI-AI?](https://github.com/Satty27/andi-ai/wiki)
+2. [Initialize MongoDB Connection](https://github.com/Satty27/andi-ai/wiki/MongoDB-connection-initialisation)
+3. [Analyse Schema](https://github.com/Satty27/andi-ai/wiki/Schema-Analysis) 
+4. [Text to NoSQL Query Generation](https://github.com/Satty27/andi-ai/wiki/Text%E2%80%90To%E2%80%90NoSQL-Query-Generation)
+5. [Use of Runtime Variables ](https://github.com/Satty27/andi-ai/wiki/How-to-user-runtime-variables)
+6. [Local Persistent Query Caching](https://github.com/Satty27/andi-ai/wiki/Persistent-Query-Caching) 
+7. [Error Handling](https://github.com/Satty27/andi-ai/wiki/Error-Handling)
+8. [Complete `sample_mflix` Usage Examples](https://github.com/Satty27/andi-ai/wiki/Complete-%60sample_mflix%60-Usage-Examples)
+9. [Single Endpoint Architecture](https://github.com/Satty27/andi-ai/wiki/Single-Endpoint-Architecture)
+10. [Recommended Pipeline and Validation ](https://github.com/Satty27/andi-ai/wiki/Recommended-Request-Pipeline-and-Validation)
+11. [Usage Checklist](https://github.com/Satty27/andi-ai/wiki/Usage-Checklist)
+12. [Schema First Privacy Model ](https://github.com/Satty27/andi-ai/wiki/Schema%E2%80%90First-Privacy-Model)
 ---
 
 ## ✨ Features
